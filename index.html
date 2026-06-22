@@ -522,15 +522,34 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 6% 2
     </div>
     <div>
       <h3 style="font-family:var(--display);font-size:1.2rem;color:var(--white);margin-bottom:1.5rem;">Send a Message</h3>
-      <div class="contact-form">
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+
+        <input type="hidden" name="access_key" value="798fbf9f-aac8-4749-8704-85d0359623bb">
+
         <div class="f-row">
-          <div class="f-group"><label>YOUR NAME</label><input type="text" placeholder="Jane Doe"/></div>
-          <div class="f-group"><label>EMAIL</label><input type="email" placeholder="jane@example.com"/></div>
+          <div class="f-group">
+            <label>YOUR NAME</label>
+            <input type="text" name="name" placeholder="Jane Doe" required>
+          </div>
+
+          <div class="f-group">
+            <label>EMAIL</label>
+            <input type="email" name="email" placeholder="jane@example.com" required>
+          </div>
         </div>
-        <div class="f-group"><label>SUBJECT</label><input type="text" placeholder="Job Opportunity / Project Inquiry"/></div>
-        <div class="f-group"><label>MESSAGE</label><textarea placeholder="Tell me about your project or what you're looking for..."></textarea></div>
-        <button class="btn btn-pink" style="width:fit-content">✉ Send Message</button>
-      </div>
+
+        <div class="f-group">
+          <label>SUBJECT</label>
+          <input type="text" name="subject" placeholder="Job Opportunity / Project Inquiry" required>
+        </div>
+
+        <div class="f-group">
+          <label>MESSAGE</label>
+          <textarea name="message" placeholder="Tell me about your project or what you're looking for..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-pink" style="width:fit-content">✉ Send Message</button>
+      </form>
     </div>
   </div>
 </section>
