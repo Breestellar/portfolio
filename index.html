@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Brendah Stella — Software Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0a0008;
+  --surface:#110010;
+  --card:#1a0016;
+  --border:#3a0030;
+  --pink:#ff2d78;
+  --pink-light:#ff6fa8;
+  --pink-dim:#cc1155;
+  --pink-glow:rgba(255,45,120,0.18);
+  --text:#f0e0ec;
+  --muted:#a07090;
+  --white:#fff;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Inter',sans-serif;
+  --display:'Space Grotesk',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden;cursor:none;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--pink);border-radius:10px;}
+a,button{cursor:none;}
+
+/* ─── CUSTOM CURSOR ─── */
+#cursor-dot{
+  width:8px;height:8px;
+  background:var(--pink);
+  border-radius:50%;
+  position:fixed;top:0;left:0;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s ease,background 0.2s;
+}
+#cursor-ring{
+  width:36px;height:36px;
+  border:2px solid var(--pink);
+  border-radius:50%;
+  position:fixed;top:0;left:0;
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform 0.12s ease,width 0.2s,height 0.2s,border-color 0.2s,opacity 0.2s;
+  opacity:0.7;
+}
+body.cursor-hover #cursor-dot{transform:translate(-50%,-50%) scale(2.5);background:var(--pink-light);}
+body.cursor-hover #cursor-ring{width:56px;height:56px;border-color:var(--pink-light);opacity:0.4;}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;height:68px;
+  background:rgba(10,0,8,0.9);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:var(--mono);font-size:1.15rem;font-weight:700;color:var(--pink);letter-spacing:2px;}
+.nav-links{display:flex;gap:2.2rem;list-style:none;}
+.nav-links a{font-size:0.83rem;color:var(--muted);text-decoration:none;font-family:var(--mono);transition:color 0.2s;letter-spacing:0.5px;}
+.nav-links a:hover{color:var(--pink);}
+.nav-avail{
+  font-family:var(--mono);font-size:0.72rem;color:var(--pink);
+  border:1px solid var(--pink);padding:4px 14px;border-radius:20px;
+  animation:pulse-avail 2s infinite;
+}
+@keyframes pulse-avail{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--pink-glow);}50%{opacity:0.7;box-shadow:0 0 0 6px transparent;}}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;}
+.hamburger span{width:24px;height:2px;background:var(--text);transition:all 0.3s;}
+
+/* ─── HERO ─── */
+#home{
+  min-height:100vh;display:flex;align-items:center;
+  padding:88px 6% 60px;position:relative;overflow:hidden;
+}
+.hero-bg-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,45,120,0.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,45,120,0.07) 1px,transparent 1px);
+  background-size:55px 55px;
+}
+.hero-glow1{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,45,120,0.13) 0%,transparent 70%);top:-80px;right:-80px;pointer-events:none;}
+.hero-glow2{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(200,0,80,0.09) 0%,transparent 70%);bottom:0;left:10%;pointer-events:none;}
+.hero-content{position:relative;max-width:750px;}
+.hero-eyebrow{font-family:var(--mono);font-size:0.8rem;color:var(--pink);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.3rem;}
+.hero-name{font-family:var(--display);font-size:clamp(3rem,6.5vw,5.2rem);font-weight:700;line-height:1.05;color:var(--white);margin-bottom:0.6rem;}
+.hero-name span{color:var(--pink);text-shadow:0 0 30px rgba(255,45,120,0.4);}
+.hero-role{font-family:var(--display);font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--muted);font-weight:400;margin-bottom:1.6rem;}
+.hero-desc{font-size:1rem;color:#c090a8;max-width:560px;line-height:1.85;margin-bottom:2.5rem;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:2.6rem;}
+.hero-tag{font-family:var(--mono);font-size:0.73rem;padding:5px 14px;border-radius:20px;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;}
+.hero-tag.t1{border-color:#3b82f6;color:#3b82f6;}
+.hero-tag.t2{border-color:#fbbf24;color:#fbbf24;}
+.hero-tag.t3{border-color:var(--pink);color:var(--pink);}
+.hero-tag.t4{border-color:#34d399;color:#34d399;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:8px;font-family:var(--mono);font-size:0.85rem;text-decoration:none;font-weight:600;transition:all 0.22s;cursor:none;border:none;}
+.btn-pink{background:var(--pink);color:#fff;}
+.btn-pink:hover{background:var(--pink-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,45,120,0.4);}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-outline:hover{border-color:var(--pink);color:var(--pink);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:3rem;margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
+.stat-num{font-family:var(--display);font-size:2.1rem;font-weight:700;color:var(--pink);}
+.stat-lbl{font-size:0.73rem;color:var(--muted);font-family:var(--mono);margin-top:2px;}
+
+/* ─── SECTIONS ─── */
+section{padding:100px 6%;}
+.s-eye{font-family:var(--mono);font-size:0.74rem;color:var(--pink);letter-spacing:3px;text-transform:uppercase;margin-bottom:0.8rem;}
+.s-title{font-family:var(--display);font-size:clamp(1.9rem,3.5vw,2.7rem);font-weight:700;color:var(--white);margin-bottom:1rem;}
+.s-sub{color:var(--muted);font-size:0.94rem;max-width:530px;margin-bottom:3.5rem;}
+
+/* ─── ABOUT ─── */
+#about{background:var(--surface);}
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.about-text p{color:#c090a8;margin-bottom:1.2rem;line-height:1.9;}
+.about-text p strong{color:var(--pink);}
+.about-meta{display:flex;flex-direction:column;gap:0.8rem;margin-top:2rem;}
+.meta-row{display:flex;align-items:center;gap:1rem;font-size:0.88rem;}
+.meta-key{font-family:var(--mono);color:var(--pink);font-size:0.76rem;min-width:105px;}
+.meta-val{color:#c090a8;}
+.about-socials{display:flex;gap:0.8rem;margin-top:2rem;flex-wrap:wrap;}
+.soc-btn{display:flex;align-items:center;gap:7px;padding:8px 16px;border:1px solid var(--border);border-radius:8px;color:var(--muted);text-decoration:none;font-size:0.8rem;font-family:var(--mono);transition:all 0.2s;}
+.soc-btn:hover{border-color:var(--pink);color:var(--pink);}
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.a-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:border-color 0.2s,transform 0.2s;}
+.a-card:hover{border-color:var(--pink);transform:translateY(-3px);}
+.a-card-icon{font-size:1.7rem;margin-bottom:0.8rem;}
+.a-card-title{font-family:var(--display);font-size:0.95rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;}
+.a-card-desc{font-size:0.81rem;color:var(--muted);}
+
+/* ─── SKILLS ─── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem;}
+.sk-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.6rem;transition:border-color 0.2s,transform 0.2s;}
+.sk-card:hover{border-color:var(--pink);transform:translateY(-3px);}
+.sk-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;}
+.sk-name{font-family:var(--display);font-weight:600;font-size:0.95rem;color:var(--white);}
+.sk-pct{font-family:var(--mono);font-size:0.78rem;color:var(--pink);}
+.sk-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
+.sk-tag{font-family:var(--mono);font-size:0.68rem;padding:2px 10px;background:rgba(255,45,120,0.07);border:1px solid rgba(255,45,120,0.18);border-radius:20px;color:#c090a8;}
+.sk-bar{height:4px;background:var(--border);border-radius:4px;overflow:hidden;}
+.sk-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--pink),#ff6fa8);transition:width 1.2s ease;width:0%;}
+
+/* ─── PROJECTS ─── */
+#projects{background:var(--surface);}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s;display:flex;flex-direction:column;}
+.proj-card:hover{border-color:var(--pink);transform:translateY(-5px);box-shadow:0 20px 45px rgba(0,0,0,0.4),0 0 30px rgba(255,45,120,0.07);}
+.proj-head{padding:1.8rem 1.8rem 1.2rem;background:linear-gradient(135deg,rgba(255,45,120,0.05),rgba(180,0,80,0.03));border-bottom:1px solid var(--border);}
+.proj-badges{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+.badge{font-family:var(--mono);font-size:0.67rem;padding:3px 10px;border-radius:20px;border:1px solid;}
+.badge-type{border-color:var(--pink);color:var(--pink);}
+.badge-tech{border-color:var(--border);color:var(--muted);}
+.proj-name{font-family:var(--display);font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:0.4rem;}
+.proj-sub{font-size:0.8rem;color:var(--pink);font-family:var(--mono);}
+.proj-body{padding:1.4rem 1.8rem 1.8rem;flex:1;}
+.proj-desc{color:#c090a8;font-size:0.9rem;line-height:1.75;margin-bottom:1.5rem;}
+.proj-links{display:flex;gap:0.8rem;flex-wrap:wrap;}
+.p-link{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-family:var(--mono);font-size:0.78rem;text-decoration:none;transition:all 0.2s;}
+.p-demo{background:var(--pink);color:#fff;}
+.p-demo:hover{background:var(--pink-light);}
+.p-demo.soon{background:var(--border);color:var(--muted);pointer-events:none;}
+.p-code{border:1px solid var(--border);color:var(--text);}
+.p-code:hover{border-color:var(--pink);color:var(--pink);}
+
+/* ─── EXPERIENCE ─── */
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--pink),rgba(255,45,120,0.1));}
+.t-item{position:relative;margin-bottom:3rem;padding-left:1.5rem;}
+.t-dot{position:absolute;left:-2rem;top:6px;width:12px;height:12px;border-radius:50%;background:var(--pink);border:2px solid var(--bg);box-shadow:0 0 10px rgba(255,45,120,0.6);}
+.t-year{font-family:var(--mono);font-size:0.74rem;color:var(--pink);margin-bottom:0.5rem;}
+.t-role{font-family:var(--display);font-size:1.2rem;font-weight:600;color:var(--white);margin-bottom:0.2rem;}
+.t-company{font-size:0.86rem;color:var(--muted);margin-bottom:1rem;font-family:var(--mono);}
+.t-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.t-list li{font-size:0.87rem;color:#c090a8;padding-left:1.1rem;position:relative;}
+.t-list li::before{content:'▸';position:absolute;left:0;color:var(--pink);font-size:0.7rem;top:3px;}
+
+/* ─── SERVICES ─── */
+#services{background:var(--surface);}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;}
+.srv-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem 1.6rem;transition:all 0.25s;}
+.srv-card:hover{border-color:var(--pink);transform:translateY(-4px);box-shadow:0 10px 30px rgba(255,45,120,0.08);}
+.srv-icon{width:50px;height:50px;background:rgba(255,45,120,0.1);border:1px solid rgba(255,45,120,0.25);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.2rem;}
+.srv-name{font-family:var(--display);font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.6rem;}
+.srv-desc{font-size:0.84rem;color:var(--muted);line-height:1.75;}
+
+/* ─── FAQ ─── */
+.faq-filters{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:2rem;}
+.faq-filter{font-family:var(--mono);font-size:0.72rem;padding:5px 14px;border:1px solid var(--border);border-radius:20px;color:var(--muted);cursor:none;transition:all 0.2s;background:transparent;}
+.faq-filter:hover,.faq-filter.active{border-color:var(--pink);color:var(--pink);background:rgba(255,45,120,0.07);}
+.faq-list{max-width:740px;display:flex;flex-direction:column;gap:1rem;}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.5rem;cursor:none;font-family:var(--display);font-weight:500;font-size:0.95rem;color:var(--white);transition:color 0.2s;gap:1rem;}
+.faq-q:hover{color:var(--pink);}
+.faq-icon{font-size:1.3rem;color:var(--pink);transition:transform 0.3s;flex-shrink:0;line-height:1;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.3s;padding:0 1.5rem;font-size:0.87rem;color:var(--muted);line-height:1.8;}
+.faq-item.open .faq-a{max-height:240px;padding:0 1.5rem 1.2rem;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+
+/* ─── CONTACT ─── */
+#contact{background:var(--surface);}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.35fr;gap:5rem;align-items:start;}
+.contact-links{display:flex;flex-direction:column;gap:1rem;margin-top:1rem;}
+.c-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--card);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);transition:all 0.2s;}
+.c-link:hover{border-color:var(--pink);color:var(--pink);transform:translateX(5px);}
+.c-icon{width:42px;height:42px;background:rgba(255,45,120,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.c-lbl{font-family:var(--mono);font-size:0.69rem;color:var(--muted);}
+.c-val{font-size:0.9rem;}
+.contact-form{display:flex;flex-direction:column;gap:1rem;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.f-group{display:flex;flex-direction:column;gap:0.4rem;}
+.f-group label{font-family:var(--mono);font-size:0.73rem;color:var(--muted);letter-spacing:1px;}
+.f-group input,.f-group textarea{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--text);font-family:var(--sans);font-size:0.9rem;outline:none;transition:border-color 0.2s;resize:vertical;}
+.f-group input:focus,.f-group textarea:focus{border-color:var(--pink);}
+.f-group textarea{min-height:120px;}
+
+/* ─── FOOTER ─── */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 6% 2rem;}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:3rem;}
+.foot-brand{font-family:var(--display);font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.6rem;}
+.foot-tag{font-size:0.84rem;color:var(--muted);line-height:1.75;margin-bottom:1.2rem;}
+.foot-social{display:flex;gap:0.7rem;}
+.foot-social a{width:36px;height:36px;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:0.9rem;transition:all 0.2s;}
+.foot-social a:hover{border-color:var(--pink);color:var(--pink);}
+.foot-col h4{font-family:var(--mono);font-size:0.74rem;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:1.2rem;}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+.foot-col ul a{color:var(--muted);text-decoration:none;font-size:0.87rem;transition:color 0.2s;}
+.foot-col ul a:hover{color:var(--pink);}
+.foot-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;color:var(--muted);font-family:var(--mono);flex-wrap:wrap;gap:0.5rem;}
+
+/* ─── AI CHAT ─── */
+#chat-btn{
+  position:fixed;bottom:28px;right:28px;z-index:600;
+  width:54px;height:54px;
+  background:linear-gradient(135deg,var(--pink),#c0004a);
+  border-radius:50%;border:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;cursor:none;
+  box-shadow:0 4px 22px rgba(255,45,120,0.45);
+  transition:transform 0.2s;
+}
+#chat-btn:hover{transform:scale(1.1);}
+#chat-win{
+  position:fixed;bottom:96px;right:28px;width:340px;
+  background:var(--surface);border:1px solid var(--border);border-radius:18px;
+  overflow:hidden;z-index:600;display:none;flex-direction:column;
+  box-shadow:0 20px 55px rgba(0,0,0,0.5);
+}
+#chat-win.open{display:flex;}
+.ch-head{padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(255,45,120,0.1),rgba(150,0,60,0.08));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.8rem;}
+.ch-avatar{width:36px;height:36px;background:linear-gradient(135deg,var(--pink),#880033);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.ch-name{font-weight:600;font-size:0.9rem;color:var(--white);}
+.ch-status{font-family:var(--mono);font-size:0.69rem;color:#34d399;}
+.ch-close{cursor:none;color:var(--muted);font-size:1.4rem;line-height:1;padding:4px;margin-left:auto;}
+.ch-close:hover{color:var(--white);}
+.ch-msgs{padding:1rem;min-height:200px;max-height:290px;overflow-y:auto;display:flex;flex-direction:column;gap:0.8rem;}
+.ch-msg{padding:10px 14px;border-radius:12px;font-size:0.84rem;line-height:1.6;max-width:88%;}
+.ch-msg.bot{background:var(--card);border:1px solid var(--border);color:var(--text);border-bottom-left-radius:3px;}
+.ch-msg.user{background:linear-gradient(135deg,var(--pink),#cc004a);color:#fff;font-weight:500;align-self:flex-end;border-bottom-right-radius:3px;}
+.ch-chips{display:flex;flex-wrap:wrap;gap:0.4rem;padding:0 1rem 0.6rem;}
+.chip{font-family:var(--mono);font-size:0.69rem;padding:4px 10px;border:1px solid var(--border);border-radius:20px;color:var(--muted);cursor:none;transition:all 0.2s;background:transparent;}
+.chip:hover{border-color:var(--pink);color:var(--pink);}
+.ch-input-row{display:flex;gap:0.5rem;padding:0.8rem 1rem 1rem;border-top:1px solid var(--border);}
+.ch-input{flex:1;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-size:0.84rem;outline:none;font-family:var(--sans);}
+.ch-input:focus{border-color:var(--pink);}
+.ch-send{width:36px;height:36px;background:var(--pink);border:none;border-radius:8px;cursor:none;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:background 0.2s;color:#fff;}
+.ch-send:hover{background:var(--pink-light);}
+.typing-dots{display:flex;gap:4px;align-items:center;padding:4px 0;}
+.typing-dots span{width:6px;height:6px;background:var(--muted);border-radius:50%;animation:blink 1.2s infinite;}
+.typing-dots span:nth-child(2){animation-delay:0.2s;}
+.typing-dots span:nth-child(3){animation-delay:0.4s;}
+@keyframes blink{0%,80%,100%{opacity:0.2;}40%{opacity:1;}}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  .about-wrap,.contact-wrap{grid-template-columns:1fr;gap:3rem;}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+}
+@media(max-width:640px){
+  section{padding:70px 5%;}
+  nav{padding:0 5%;}
+  .about-cards{grid-template-columns:1fr;}
+  .f-row{grid-template-columns:1fr;}
+  .foot-grid{grid-template-columns:1fr;}
+  #chat-win{width:calc(100vw - 32px);right:16px;}
+  .hero-stats{gap:1.8rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSORS -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BS.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <span class="nav-avail">● Available for work</span>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">// Software Developer · Mombasa, Kenya</p>
+    <h1 class="hero-name">Hi, I'm<br><span>Brendah Stella</span></h1>
+    <p class="hero-role">Full-Stack Developer &amp; Problem Solver</p>
+    <p class="hero-desc">A passionate Full-Stack Developer with 4+ years of building applications that solve real-world problems — from elegant frontends to powerful backends and seamless API integrations.</p>
+    <div class="hero-tags">
+      <span class="hero-tag t1">Python</span>
+      <span class="hero-tag t2">JavaScript</span>
+      <span class="hero-tag t3">Java</span>
+      <span class="hero-tag t4">API Integration</span>
+      <span class="hero-tag">MySQL</span>
+      <span class="hero-tag">TailwindCSS</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-pink">▶ View My Work</a>
+      <a href="#contact" class="btn btn-outline">✉ Hire Me</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">4+</div><div class="stat-lbl">Years Exp.</div></div>
+      <div><div class="stat-num">2+</div><div class="stat-lbl">Projects Done</div></div>
+      <div><div class="stat-num">6+</div><div class="stat-lbl">Tech Stacks</div></div>
+      <div><div class="stat-num">2</div><div class="stat-lbl">Specialties</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrap">
+    <div>
+      <p class="s-eye">// Who I Am</p>
+      <h2 class="s-title">About Me</h2>
+      <div class="about-text">
+        <p>I'm <strong>Brendah Stella</strong>, a driven Full-Stack Developer based in <strong>Mombasa, Kenya</strong> with 4+ years of hands-on experience building and shipping real applications.</p>
+        <p>My expertise bridges <strong>building powerful applications</strong> and connecting them — from Python backends and MySQL databases to sleek frontends and third-party API integrations.</p>
+        <p>I'm passionate about software that actually solves problems people face every day. I recently graduated and I'm <strong>actively seeking opportunities</strong> to grow, contribute, and keep building things that matter.</p>
+      </div>
+      <div class="about-meta">
+        <div class="meta-row"><span class="meta-key">📍 Location</span><span class="meta-val">Mombasa, Kenya</span></div>
+        <div class="meta-row"><span class="meta-key">🎓 Education</span><span class="meta-val">Recent Graduate, 2026</span></div>
+        <div class="meta-row"><span class="meta-key">⏱ Experience</span><span class="meta-val">4+ Years</span></div>
+        <div class="meta-row"><span class="meta-key">✅ Status</span><span class="meta-val">Available Today</span></div>
+      </div>
+      <div class="about-socials">
+        <a href="https://github.com/Breestellar" target="_blank" class="soc-btn">⌥ GitHub</a>
+        <a href="https://wa.me/254700000000" target="_blank" class="soc-btn">💬 WhatsApp</a>
+        <a href="https://linkedin.com/in/brendah-stella" target="_blank" class="soc-btn">in LinkedIn</a>
+        <a href="https://instagram.com" target="_blank" class="soc-btn">📷 Instagram</a>
+      </div>
+    </div>
+    <div class="about-cards">
+      <div class="a-card"><div class="a-card-icon">🌍</div><div class="a-card-title">Real-World Impact</div><div class="a-card-desc">Building apps that solve actual everyday problems — not just demos.</div></div>
+      <div class="a-card"><div class="a-card-icon">⚡</div><div class="a-card-title">Fast Learner</div><div class="a-card-desc">New framework? New concept? I pick things up fast and run with them.</div></div>
+      <div class="a-card"><div class="a-card-icon">🔗</div><div class="a-card-title">API Integration</div><div class="a-card-desc">Connecting systems and services seamlessly with clean, reliable integrations.</div></div>
+      <div class="a-card"><div class="a-card-icon">🛠</div><div class="a-card-title">Full-Stack</div><div class="a-card-desc">Comfortable across the stack — database design all the way to UI polish.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="s-eye">// Expertise</p>
+  <h2 class="s-title">My Skills</h2>
+  <p class="s-sub">From frontend to backend, mobile to integrations — here's what I bring to every project.</p>
+  <div class="skills-grid">
+    <div class="sk-card"><div class="sk-head"><span class="sk-name">Backend Development</span><span class="sk-pct">Proficiency 88%</span></div><div class="sk-tags"><span class="sk-tag">Python</span><span class="sk-tag">Java</span><span class="sk-tag">MySQL</span></div><div class="sk-bar"><div class="sk-fill" data-w="88"></div></div></div>
+    <div class="sk-card"><div class="sk-head"><span class="sk-name">Frontend Development</span><span class="sk-pct">Proficiency 85%</span></div><div class="sk-tags"><span class="sk-tag">HTML5</span><span class="sk-tag">TailwindCSS</span><span class="sk-tag">JavaScript</span></div><div class="sk-bar"><div class="sk-fill" data-w="85"></div></div></div>
+    <div class="sk-card"><div class="sk-head"><span class="sk-name">Database Design</span><span class="sk-pct">Proficiency 82%</span></div><div class="sk-tags"><span class="sk-tag">MySQL</span><span class="sk-tag">Schema Design</span><span class="sk-tag">Query Optimization</span></div><div class="sk-bar"><div class="sk-fill" data-w="82"></div></div></div>
+    <div class="sk-card"><div class="sk-head"><span class="sk-name">API Integration</span><span class="sk-pct">Proficiency 80%</span></div><div class="sk-tags"><span class="sk-tag">REST APIs</span><span class="sk-tag">JSON</span><span class="sk-tag">HTTP</span></div><div class="sk-bar"><div class="sk-fill" data-w="80"></div></div></div>
+    <div class="sk-card"><div class="sk-head"><span class="sk-name">Python Programming</span><span class="sk-pct">Proficiency 87%</span></div><div class="sk-tags"><span class="sk-tag">Scripting</span><span class="sk-tag">Automation</span><span class="sk-tag">Data</span></div><div class="sk-bar"><div class="sk-fill" data-w="87"></div></div></div>
+    <div class="sk-card"><div class="sk-head"><span class="sk-name">IT &amp; Systems Support</span><span class="sk-pct">Proficiency 78%</span></div><div class="sk-tags"><span class="sk-tag">Networking</span><span class="sk-tag">OS Config</span><span class="sk-tag">Troubleshooting</span></div><div class="sk-bar"><div class="sk-fill" data-w="78"></div></div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="s-eye">// Portfolio</p>
+  <h2 class="s-title">Featured Projects</h2>
+  <p class="s-sub">Real-world projects — live demos coming soon as they deploy.</p>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-head">
+        <div class="proj-badges"><span class="badge badge-type">Web App</span><span class="badge badge-tech">Python · MySQL · JS</span></div>
+        <div class="proj-name">SmartTenant</div>
+        <div class="proj-sub">Tenant &amp; Property Management System</div>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">A full-stack property management platform simplifying the landlord-tenant relationship. Handles rent tracking, tenant records, lease management, and payment history in one streamlined system.</p>
+        <div class="proj-links">
+          <span class="p-link p-demo soon">⏳ Demo Coming Soon</span>
+          <a href="https://github.com/Breestellar/Smarttenant" target="_blank" class="p-link p-code">⌥ Code</a>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-head">
+        <div class="proj-badges"><span class="badge badge-type">Utility App</span><span class="badge badge-tech">Python · HTML · TailwindCSS</span></div>
+        <div class="proj-name">TUM Room Locator</div>
+        <div class="proj-sub">Campus Room-Finding Tool</div>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">A smart campus navigation tool helping students and staff locate rooms across the Technical University of Mombasa. Reduces navigation frustration — practical, fast, and user-friendly.</p>
+        <div class="proj-links">
+          <span class="p-link p-demo soon">⏳ Demo Coming Soon</span>
+          <a href="https://github.com/Breestellar/Tum-Room-Locator" target="_blank" class="p-link p-code">⌥ Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="s-eye">// Career</p>
+  <h2 class="s-title">My Experience</h2>
+  <p class="s-sub">Hands-on in ICT infrastructure, systems support, and independent development — the journey so far.</p>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-year">May 2025 — August 2025</div>
+      <div class="t-role">ICT Intern</div>
+      <div class="t-company">Kenya Marine and Fisheries Research Institute (KMFRI) · Mombasa, Kenya</div>
+      <ul class="t-list">
+        <li>Assisted in troubleshooting and resolving computer hardware issues across all departments.</li>
+        <li>Installed and configured operating systems and enterprise software on institute machines.</li>
+        <li>Participated in setting up and configuring LAN and Wi-Fi networks across the institute.</li>
+        <li>Conducted network diagnostics, cable management, and system performance monitoring.</li>
+        <li>Provided first-level technical support to staff and handled data backup &amp; recovery procedures.</li>
+        <li>Managed and maintained ICT infrastructure including hardware upkeep and asset tracking.</li>
+      </ul>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:#c090a8;box-shadow:0 0 10px rgba(200,140,180,0.5)"></div>
+      <div class="t-year">2022 — Present</div>
+      <div class="t-role">Independent Developer</div>
+      <div class="t-company">Self-Directed &amp; Open Source · Mombasa, Kenya</div>
+      <ul class="t-list">
+        <li>Built full-stack applications including SmartTenant and TUM Room Locator from the ground up.</li>
+        <li>Continuously learning new frameworks and best practices through personal projects.</li>
+        <li>Integrating third-party APIs and exploring modern web development toolchains.</li>
+        <li>Growing an open-source GitHub portfolio with practical, problem-solving applications.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="s-eye">// What I Offer</p>
+  <h2 class="s-title">My Services</h2>
+  <p class="s-sub">End-to-end solutions from concept to deployment.</p>
+  <div class="srv-grid">
+    <div class="srv-card"><div class="srv-icon">🌐</div><div class="srv-name">Web Development</div><div class="srv-desc">Full-stack web apps with HTML, TailwindCSS, JavaScript frontends and robust Python backends.</div></div>
+    <div class="srv-card"><div class="srv-icon">🗄️</div><div class="srv-name">Database Design</div><div class="srv-desc">Designing and optimizing relational databases with MySQL — efficient schemas, clean queries, reliable data.</div></div>
+    <div class="srv-card"><div class="srv-icon">🔗</div><div class="srv-name">API Integration</div><div class="srv-desc">Connecting apps to third-party services — payments, maps, data feeds — seamlessly and securely.</div></div>
+    <div class="srv-card"><div class="srv-icon">☕</div><div class="srv-name">Java Applications</div><div class="srv-desc">Building desktop and backend applications in Java — robust, maintainable, and scalable.</div></div>
+    <div class="srv-card"><div class="srv-icon">🐍</div><div class="srv-name">Python &amp; Automation</div><div class="srv-desc">Automating repetitive tasks, data processing pipelines, and backend logic with clean Python scripts.</div></div>
+    <div class="srv-card"><div class="srv-icon">🛠</div><div class="srv-name">IT Support &amp; Systems</div><div class="srv-desc">Network setup, system configuration, and troubleshooting — backed by hands-on KMFRI experience.</div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <p class="s-eye">// Got Questions?</p>
+  <h2 class="s-title">Frequently Asked Questions</h2>
+  <p class="s-sub">Everything you need to know before we work together — answered honestly.</p>
+  <div class="faq-filters">
+    <button class="faq-filter active" onclick="filterFaq('all',this)">All</button>
+    <button class="faq-filter" onclick="filterFaq('hiring',this)">👔 Hiring</button>
+    <button class="faq-filter" onclick="filterFaq('tech',this)">⚙️ Technical</button>
+    <button class="faq-filter" onclick="filterFaq('work',this)">🌐 Work Style</button>
+    <button class="faq-filter" onclick="filterFaq('projects',this)">📁 Projects</button>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item" data-cat="hiring"><div class="faq-q" onclick="toggleFaq(this)">Are you open to entry-level or junior roles?<span class="faq-icon">+</span></div><div class="faq-a">Absolutely! I recently graduated and I'm actively seeking my first professional role. I'm a fast learner, committed, and ready to contribute from day one while growing within a great team.</div></div>
+    <div class="faq-item" data-cat="tech"><div class="faq-q" onclick="toggleFaq(this)">What technologies are you most comfortable with?<span class="faq-icon">+</span></div><div class="faq-a">I'm most confident with Python, MySQL, JavaScript, HTML/TailwindCSS, and Java. I also have solid experience with REST API integration and hands-on IT/networking from my KMFRI internship.</div></div>
+    <div class="faq-item" data-cat="hiring"><div class="faq-q" onclick="toggleFaq(this)">Are you available for freelance projects?<span class="faq-icon">+</span></div><div class="faq-a">Yes! While I'm looking for a full-time role, I'm also open to freelance and contract work. If you have a project in mind, let's talk about it.</div></div>
+    <div class="faq-item" data-cat="work"><div class="faq-q" onclick="toggleFaq(this)">Can you work remotely?<span class="faq-icon">+</span></div><div class="faq-a">Yes — I'm fully set up for remote work and comfortable collaborating via GitHub, Slack, and video calls. I'm also open to on-site roles in Mombasa and surrounding areas.</div></div>
+    <div class="faq-item" data-cat="projects"><div class="faq-q" onclick="toggleFaq(this)">Do your projects have live demos?<span class="faq-icon">+</span></div><div class="faq-a">Not yet — but SmartTenant and TUM Room Locator are being deployed soon. In the meantime, the full source code is on my GitHub. Live links will appear here once they're live.</div></div>
+    <div class="faq-item" data-cat="work"><div class="faq-q" onclick="toggleFaq(this)">How do I get in touch with you?<span class="faq-icon">+</span></div><div class="faq-a">Via the contact form below, WhatsApp, LinkedIn, or Instagram. I typically respond within 24 hours — don't hesitate to reach out!</div></div>
+    <div class="faq-item" data-cat="tech"><div class="faq-q" onclick="toggleFaq(this)">Do you have experience with APIs?<span class="faq-icon">+</span></div><div class="faq-a">Yes — API integration is one of my core skills. I've worked with REST APIs for data exchange, third-party service connections, and building systems that communicate across platforms.</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="s-eye">// Get In Touch</p>
+  <h2 class="s-title">Let's Work Together</h2>
+  <p class="s-sub">Have a project in mind? I'm available today — drop me a message.</p>
+  <div class="contact-wrap">
+    <div>
+      <div class="contact-links">
+        <a href="tel:+254700000000" class="c-link"><div class="c-icon">📞</div><div><div class="c-lbl">Phone</div><div class="c-val">+254 700 000 000</div></div></a>
+        <a href="https://wa.me/254700000000" target="_blank" class="c-link"><div class="c-icon">💬</div><div><div class="c-lbl">WhatsApp</div><div class="c-val">Chat Now</div></div></a>
+        <a href="https://github.com/Breestellar" target="_blank" class="c-link"><div class="c-icon">⌥</div><div><div class="c-lbl">GitHub</div><div class="c-val">github.com/Breestellar</div></div></a>
+        <a href="https://linkedin.com/in/brendah-stella" target="_blank" class="c-link"><div class="c-icon">in</div><div><div class="c-lbl">LinkedIn</div><div class="c-val">Brendah Stella</div></div></a>
+        <a href="https://instagram.com" target="_blank" class="c-link"><div class="c-icon">📷</div><div><div class="c-lbl">Instagram</div><div class="c-val">@brendahstella</div></div></a>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--display);font-size:1.2rem;color:var(--white);margin-bottom:1.5rem;">Send a Message</h3>
+      <div class="contact-form">
+        <div class="f-row">
+          <div class="f-group"><label>YOUR NAME</label><input type="text" placeholder="Jane Doe"/></div>
+          <div class="f-group"><label>EMAIL</label><input type="email" placeholder="jane@example.com"/></div>
+        </div>
+        <div class="f-group"><label>SUBJECT</label><input type="text" placeholder="Job Opportunity / Project Inquiry"/></div>
+        <div class="f-group"><label>MESSAGE</label><textarea placeholder="Tell me about your project or what you're looking for..."></textarea></div>
+        <button class="btn btn-pink" style="width:fit-content">✉ Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand">Brendah Stella</div>
+      <p class="foot-tag">Full-Stack Developer building applications that solve real-world problems — one line of code at a time, from Mombasa, Kenya.</p>
+      <div class="foot-social">
+        <a href="https://github.com/Breestellar" target="_blank">⌥</a>
+        <a href="https://linkedin.com/in/brendah-stella" target="_blank">in</a>
+        <a href="https://wa.me/254700000000" target="_blank">💬</a>
+        <a href="https://instagram.com" target="_blank">📷</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Web Development</a></li>
+        <li><a href="#services">Database Design</a></li>
+        <li><a href="#services">API Integration</a></li>
+        <li><a href="#services">Java Applications</a></li>
+        <li><a href="#services">Python &amp; Automation</a></li>
+        <li><a href="#services">IT Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Brendah Stella. All rights reserved.</span>
+    <span>Made with ♥ in Mombasa, Kenya</span>
+  </div>
+</footer>
+
+<!-- AI CHAT -->
+<button id="chat-btn" onclick="toggleChat()" title="Brendah's AI Assistant">AI</button>
+<div id="chat-win">
+  <div class="ch-head">
+    <div class="ch-avatar">✨</div>
+    <div style="flex:1">
+      <div class="ch-name">Brendah's AI Assistant</div>
+      <div class="ch-status">● Online — Ask me anything</div>
+    </div>
+    <div class="ch-close" onclick="toggleChat()">×</div>
+  </div>
+  <div class="ch-msgs" id="chat-msgs">
+    <div class="ch-msg bot">👋 Hi there! I'm Brendah's AI assistant. I can answer questions about her location, availability, skills, projects, and services!</div>
+  </div>
+  <div class="ch-chips">
+    <span class="chip" onclick="qa('What are her skills?')">📍 Location</span>
+    <span class="chip" onclick="qa('Is she available for work?')">✅ Availability</span>
+    <span class="chip" onclick="qa('Tell me about her projects')">⏱ Projects</span>
+    <span class="chip" onclick="qa('What services does she offer?')">🛠 Services</span>
+  </div>
+  <div class="ch-input-row">
+    <input class="ch-input" id="ch-input" placeholder="Ask something..." onkeydown="if(event.key==='Enter')sendChat()"/>
+    <button class="ch-send" onclick="sendChat()">➤</button>
+  </div>
+</div>
+
+<script>
+// ── CUSTOM CURSOR ──
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+animRing();
+document.querySelectorAll('a,button,.btn,.faq-q,.chip,.faq-filter,.c-link,.srv-card,.proj-card,.a-card,.sk-card,.soc-btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+});
+
+// ── SKILL BAR ANIMATION ──
+const skObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.querySelectorAll('.sk-fill').forEach(b=>b.style.width=b.dataset.w+'%');});
+},{threshold:0.3});
+document.querySelectorAll('#skills').forEach(s=>skObs.observe(s));
+
+// ── FAQ ──
+function toggleFaq(el){el.parentElement.classList.toggle('open');}
+function filterFaq(cat,btn){
+  document.querySelectorAll('.faq-filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.style.display=(cat==='all'||item.dataset.cat===cat)?'':'none';
+  });
+}
+
+// ── MOBILE NAV ──
+function toggleNav(){
+  const ul=document.querySelector('.nav-links');
+  ul.style.cssText=ul.style.display==='flex'?'':'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#110010;padding:1rem 6%;gap:1rem;border-bottom:1px solid #3a0030;z-index:499';
+  if(ul.style.display==='flex'&&ul.style.flexDirection==='column'){}else ul.style.display='';
+}
+
+// ── AI CHAT ──
+function toggleChat(){document.getElementById('chat-win').classList.toggle('open');}
+function qa(q){document.getElementById('ch-input').value=q;sendChat();}
+
+async function sendChat(){
+  const inp=document.getElementById('ch-input');
+  const msg=inp.value.trim();if(!msg)return;inp.value='';
+  const msgs=document.getElementById('chat-msgs');
+  msgs.innerHTML+=`<div class="ch-msg user">${msg}</div>`;
+  msgs.innerHTML+=`<div class="ch-msg bot" id="typing"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+  msgs.scrollTop=msgs.scrollHeight;
+  let reply='';
+  try{
+    const res=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-6",
+        max_tokens:1000,
+        system:`You are Brendah Stella's friendly AI portfolio assistant. Answer questions about her warmly and concisely (2-4 sentences). Facts:
+- Name: Brendah Stella | Based in: Mombasa, Kenya
+- Role: Full-Stack Developer | Graduated: 2026 | Experience: 4+ years learning & building
+- Skills: Python, Java, JavaScript, HTML, TailwindCSS, MySQL, REST API Integration
+- Projects: SmartTenant (property/tenant management system), TUM Room Locator (TUM campus navigation) — both on GitHub at github.com/Breestellar, deploying soon
+- Internship: ICT Intern at KMFRI (May–Aug 2025) — networking, OS config, IT support, hardware maintenance
+- Services: Web dev, database design, API integration, Java apps, Python automation, IT support
+- Availability: Open to full-time, junior roles, and freelance. Open to remote work.
+- Contact: GitHub (Breestellar), LinkedIn (brendah-stella), WhatsApp, Instagram
+Only answer about Brendah. Redirect unrelated questions politely.`,
+        messages:[{role:"user",content:msg}]
+      })
+    });
+    const d=await res.json();
+    reply=d.content?.[0]?.text||"Feel free to reach Brendah directly via the contact section!";
+  }catch{
+    const lc=msg.toLowerCase();
+    if(lc.includes('skill')||lc.includes('tech')||lc.includes('stack'))reply="Brendah is skilled in Python, Java, JavaScript, HTML, TailwindCSS, MySQL, and REST API integration. She also has IT/networking experience from her KMFRI internship.";
+    else if(lc.includes('project')||lc.includes('smarttenant')||lc.includes('room'))reply="She has two projects: SmartTenant (property management system) and TUM Room Locator (campus navigation tool) — both on GitHub and deploying soon!";
+    else if(lc.includes('availab')||lc.includes('hire')||lc.includes('freelance')||lc.includes('job'))reply="Yes! Brendah is actively looking for work — full-time, junior roles, or freelance. She's open to remote work too.";
+    else if(lc.includes('service')||lc.includes('offer'))reply="Brendah offers web development, database design, API integration, Java applications, Python automation, and IT support.";
+    else if(lc.includes('location')||lc.includes('where')||lc.includes('mombasa'))reply="Brendah is based in Mombasa, Kenya and open to remote work as well as on-site opportunities in the area.";
+    else if(lc.includes('contact')||lc.includes('reach')||lc.includes('whatsapp'))reply="You can reach Brendah via WhatsApp, LinkedIn (brendah-stella), GitHub (Breestellar), or the contact form on this page.";
+    else if(lc.includes('experience')||lc.includes('internship')||lc.includes('kmfri'))reply="Brendah interned at KMFRI for 3 months (May–Aug 2025) in ICT — handling networking, system maintenance, OS configuration, and first-level tech support.";
+    else reply="I can tell you about Brendah's skills, projects, experience, services, or how to contact her. What would you like to know?";
+  }
+  document.getElementById('typing')?.remove();
+  msgs.innerHTML+=`<div class="ch-msg bot">${reply}</div>`;
+  msgs.scrollTop=msgs.scrollHeight;
+}
+</script>
+</body>
+</html>
