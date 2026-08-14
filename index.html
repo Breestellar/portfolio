@@ -112,21 +112,19 @@
       radial-gradient(560px 420px at 88% -8%, var(--accent-soft) 0%, transparent 70%),
       var(--paper);
   }
-  .hero-shape{
-    position:absolute;top:14%;right:6%;width:340px;height:340px;
-    background:var(--gold-soft);border-radius:44% 56% 62% 38% / 40% 46% 54% 60%;
-    z-index:0;
+  .hero {
+    position: relative;
+    z-index: 1;
+    padding: 90px 0 100px;
+    display: block;
   }
-  .hero-dots{
-    position:absolute;bottom:8%;left:2%;width:150px;height:150px;
-    background-image:radial-gradient(var(--line-strong) 1.6px, transparent 1.6px);
-    background-size:16px 16px;opacity:.7;z-index:0;
+
+  .hero > div:first-child {
+    max-width: 1000px;
   }
-  .hero{
-    position:relative;z-index:1;
-    padding:70px 0 90px;
-    display:grid;grid-template-columns:minmax(0,1fr) 300px;
-    gap:64px;align-items:end;
+
+  .hero h1 {
+    max-width: 1000px;
   }
   .badge{
     display:inline-flex;align-items:center;gap:8px;
@@ -365,7 +363,6 @@
     .skills-grid{grid-template-columns:1fr;}
     .form-row{grid-template-columns:1fr;}
     .footer-inner{flex-direction:column;align-items:flex-start;}
-    .hero-shape{width:220px;height:220px;right:-10%;}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -400,8 +397,6 @@
 
   <!-- HERO -->
   <section id="home">
-    <div class="hero-shape" aria-hidden="true"></div>
-    <div class="hero-dots" aria-hidden="true"></div>
     <div class="container hero">
       <div>
         <p class="eyebrow">Software Developer | Mombasa, Kenya</p>
@@ -419,10 +414,6 @@
         </div>
       </div>
 
-      <aside class="hero-note">
-        <strong>Open to opportunities</strong>
-        <p>Full-time junior developer and ICT support roles, plus relevant contract work based in Mombasa, Nairobi or remote.</p>
-      </aside>
     </div>
   </section>
 
@@ -642,6 +633,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- CONTACT -->
   <section id="contact" class="alt-bg">
