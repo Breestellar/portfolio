@@ -1616,18 +1616,9 @@
                   ></textarea>
                 </div>
 
-                <div
-                  class="h-captcha"
-                  data-captcha="true"
-                  data-lang="en"
-                  data-theme="light"
-                  data-onload="onHCaptchaLoad"
-                  data-render="explicit"
-                  data-size="normal"
-                  aria-label="Security check"
-                ></div>
+                <div class="h-captcha" data-captcha="true"></div>
 
-                <button type="submit" class="btn btn-primary">
+                <button type="s-ubmit" class="btn btn-primary">
                   Send message
                 </button>
                 <p class="form-note">
@@ -1635,6 +1626,11 @@
                   reaching out about.
                 </p>
               </form>
+              <script
+                src="https://web3forms.com/client/script.js"
+                async
+                defer
+              ></script>
             </div>
           </div>
         </div>
@@ -1663,11 +1659,6 @@
     </footer>
 
     <script>
-      // Called by Web3Forms' hCaptcha integration after the widget is ready.
-      function onHCaptchaLoad() {
-        // Web3Forms handles the widget rendering and submission token.
-      }
-
       function toggleNav() {
         const navLinks = document.getElementById("navLinks");
         const button = document.querySelector(".hamburger");
@@ -1719,6 +1710,7 @@
         .forEach((el) => revealObs.observe(el));
     </script>
 
+    <!-- Web3Forms loads and renders the hCaptcha widget from the form markup. -->
     <script src="https://web3forms.com/client/script.js" async defer></script>
   </body>
 </html>
