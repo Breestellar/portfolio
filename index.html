@@ -12,6 +12,12 @@
     <meta name="author" content="Brendah Stella" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://breestellar.github.io/portfolio/" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' https://web3forms.com https://hcaptcha.com https://*.hcaptcha.com; script-src-attr 'none'; style-src 'self' https://fonts.googleapis.com https://hcaptcha.com https://*.hcaptcha.com; style-src-attr 'none'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://hcaptcha.com https://*.hcaptcha.com; frame-src https://hcaptcha.com https://*.hcaptcha.com; connect-src 'self' https://api.web3forms.com https://hcaptcha.com https://*.hcaptcha.com; worker-src 'self' blob:; media-src 'none'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests"
+    />
 
     <meta property="og:title" content="Brendah Stella | Software Developer" />
     <meta
@@ -26,927 +32,22 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
-    <style>
-      :root {
-        --paper: #ffffff;
-        --paper-warm: #fdf8f3;
-        --paper-deep: #f7eee4;
-        --ink: #1b1712;
-        --ink-soft: #4a443e;
-        --muted: #847c72;
-        --line: #e9dfd2;
-        --line-strong: #dccfbb;
-        --accent: #e43d12;
-        --accent-deep: #b92f0c;
-        --accent-soft: #fce7de;
-        --gold: #c4831a;
-        --gold-soft: #fbeed9;
-        --serif: "Fraunces", serif;
-        --sans: "Inter", sans-serif;
-        --mono: "JetBrains Mono", monospace;
-        --max: 1160px;
-      }
-
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        background: var(--paper);
-        color: var(--ink);
-        font-family: var(--sans);
-        font-size: 16px;
-        line-height: 1.7;
-        overflow-x: hidden;
-      }
-
-      ::selection {
-        background: var(--accent);
-        color: #fff;
-      }
-
-      ::-webkit-scrollbar {
-        width: 9px;
-      }
-      ::-webkit-scrollbar-track {
-        background: var(--paper-warm);
-      }
-      ::-webkit-scrollbar-thumb {
-        background: var(--line-strong);
-        border-radius: 20px;
-      }
-
-      a {
-        color: inherit;
-      }
-      button,
-      input,
-      textarea {
-        font: inherit;
-      }
-      a:focus-visible,
-      button:focus-visible,
-      input:focus-visible,
-      textarea:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-      }
-
-      img {
-        max-width: 100%;
-        display: block;
-      }
-
-      .container {
-        width: min(var(--max), calc(100% - 56px));
-        margin-inline: auto;
-      }
-
-      h1,
-      h2,
-      h3 {
-        font-family: var(--serif);
-        font-weight: 600;
-        letter-spacing: -0.01em;
-        color: var(--ink);
-      }
-
-      /* ── REVEAL ── */
-      .reveal {
-        opacity: 0;
-        transform: translateY(18px);
-        transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
-      }
-      .reveal.in {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* ── NAV (fixed / constant) ── */
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 200;
-      }
-      nav {
-        height: 76px;
-        background: rgba(255, 255, 255, 0.88);
-        -webkit-backdrop-filter: blur(14px);
-        backdrop-filter: blur(14px);
-        border-bottom: 1px solid var(--line);
-      }
-      .nav-inner {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .nav-logo {
-        font-family: var(--serif);
-        font-style: italic;
-        font-weight: 600;
-        font-size: 1.28rem;
-        color: var(--ink);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .nav-logo .dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--accent);
-        display: inline-block;
-      }
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 2.1rem;
-        list-style: none;
-      }
-      .nav-links a {
-        color: var(--ink-soft);
-        text-decoration: none;
-        font-size: 0.92rem;
-        font-weight: 500;
-        position: relative;
-        padding: 4px 0;
-        transition: color 0.2s;
-      }
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
-        height: 2px;
-        background: var(--accent);
-        transition: width 0.22s ease;
-      }
-      .nav-links a:hover {
-        color: var(--ink);
-      }
-      .nav-links a:hover::after {
-        width: 100%;
-      }
-      .hamburger {
-        display: none;
-        width: 44px;
-        height: 44px;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--line);
-        background: var(--paper-warm);
-        color: var(--ink);
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 1.1rem;
-      }
-
-      /* ── HERO ── */
-      #home {
-        padding: 112px 0 40px;
-        position: relative;
-        background: var(--paper);
-      }
-
-      .hero {
-        position: relative;
-        z-index: 1;
-      }
-
-      .eyebrow {
-        font-family: var(--mono);
-        font-size: 0.8rem;
-        color: var(--accent-deep);
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        margin-bottom: 0.9rem;
-      }
-
-      .hero h1 {
-        max-width: 1050px;
-        font-size: clamp(3.2rem, 7vw, 5.6rem);
-        line-height: 0.98;
-        letter-spacing: -0.02em;
-        margin-bottom: 1.1rem;
-      }
-
-      .hero h1 em {
-        color: var(--accent);
-        font-style: normal;
-      }
-
-      .hero-role {
-        max-width: 900px;
-        font-family: var(--serif);
-        font-size: clamp(1.15rem, 2vw, 1.4rem);
-        color: var(--ink-soft);
-        font-weight: 500;
-        margin-bottom: 1.1rem;
-      }
-
-      .hero-copy {
-        max-width: 900px;
-        color: var(--ink-soft);
-        font-size: 1.02rem;
-        line-height: 1.8;
-        margin-bottom: 1.7rem;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.85rem;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        min-height: 50px;
-        padding: 0 24px;
-        border-radius: 9px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.92rem;
-        border: 1.5px solid transparent;
-        transition: all 0.2s ease;
-      }
-      .btn-primary {
-        background: var(--accent);
-        color: #fff;
-      }
-      .btn-primary:hover {
-        background: var(--accent-deep);
-        transform: translateY(-2px);
-        box-shadow: 0 10px 24px rgba(228, 61, 18, 0.25);
-      }
-      .btn-secondary {
-        border-color: var(--line-strong);
-        color: var(--ink);
-        background: var(--paper);
-      }
-      .btn-secondary:hover {
-        border-color: var(--ink);
-        transform: translateY(-2px);
-      }
-
-      /* ── SECTIONS ── */
-      section {
-        padding: 40px 0;
-      }
-      .alt-bg {
-        background: var(--paper-warm);
-      }
-      .section-head {
-        max-width: 760px;
-        margin-bottom: 38px;
-      }
-      .section-label {
-        font-family: var(--mono);
-        font-size: 0.76rem;
-        color: var(--accent-deep);
-        text-transform: uppercase;
-        letter-spacing: 0.09em;
-        margin-bottom: 0.9rem;
-        display: flex;
-        align-items: center;
-        gap: 9px;
-      }
-      .section-label::before {
-        content: "";
-        width: 22px;
-        height: 2px;
-        background: var(--accent);
-        display: inline-block;
-      }
-      .section-title {
-        font-size: clamp(2rem, 3.6vw, 2.85rem);
-        line-height: 1.12;
-        margin-bottom: 1rem;
-      }
-      .section-intro {
-        color: var(--muted);
-        font-size: 1.02rem;
-        max-width: 600px;
-      }
-
-      /* ── ABOUT ── */
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1.25fr 0.75fr;
-        gap: 70px;
-      }
-      .about-copy p {
-        color: var(--ink-soft);
-        margin-bottom: 1.2rem;
-        max-width: 660px;
-        font-size: 1rem;
-      }
-      .about-copy strong {
-        color: var(--ink);
-        font-weight: 600;
-      }
-      .facts {
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid var(--line);
-      }
-      .fact {
-        display: grid;
-        grid-template-columns: 112px 1fr;
-        gap: 14px;
-        padding: 16px 18px;
-        border-bottom: 1px solid var(--line);
-        background: var(--paper);
-      }
-      .fact:nth-child(even) {
-        background: var(--paper-warm);
-      }
-      .fact:last-child {
-        border-bottom: 0;
-      }
-      .fact-key {
-        color: var(--muted);
-        font-family: var(--mono);
-        font-size: 0.71rem;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-        padding-top: 2px;
-      }
-      .fact-value {
-        color: var(--ink);
-        font-size: 0.9rem;
-        font-weight: 500;
-      }
-      .about-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 24px;
-      }
-      .pill-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--ink);
-        text-decoration: none;
-        border: 1px solid var(--line-strong);
-        padding: 9px 15px;
-        border-radius: 24px;
-        font-size: 0.86rem;
-        font-weight: 500;
-        transition: 0.2s;
-      }
-      .pill-link:hover {
-        border-color: var(--accent);
-        color: var(--accent-deep);
-        background: var(--accent-soft);
-      }
-
-      /* ── SKILLS ── */
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
-      }
-      .skill-card {
-        background: var(--paper);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 26px 22px;
-        border-top: 3px solid var(--accent);
-        transition:
-          transform 0.22s,
-          box-shadow 0.22s;
-      }
-      .skill-card:nth-child(2) {
-        border-top-color: var(--gold);
-      }
-      .skill-card:nth-child(3) {
-        border-top-color: var(--ink);
-      }
-      .skill-card:nth-child(4) {
-        border-top-color: var(--accent);
-      }
-      .skill-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 16px 30px rgba(27, 23, 18, 0.08);
-      }
-      .skill-icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        background: var(--accent-soft);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 16px;
-        color: var(--accent-deep);
-      }
-      .skill-card:nth-child(2) .skill-icon {
-        background: var(--gold-soft);
-        color: var(--gold);
-      }
-      .skill-card:nth-child(3) .skill-icon {
-        background: var(--paper-deep);
-        color: var(--ink);
-      }
-      .skill-card h3 {
-        font-family: var(--sans);
-        font-size: 1rem;
-        font-weight: 700;
-        margin-bottom: 6px;
-      }
-      .skill-card > p {
-        color: var(--muted);
-        font-size: 0.85rem;
-        margin-bottom: 1.1rem;
-        line-height: 1.6;
-      }
-      .skill-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-        list-style: none;
-      }
-      .skill-list li {
-        border: 1px solid var(--line);
-        background: var(--paper-warm);
-        padding: 5px 10px;
-        border-radius: 6px;
-        color: var(--ink-soft);
-        font-family: var(--mono);
-        font-size: 0.72rem;
-      }
-
-      /* ── PROJECTS ── */
-      .project-list {
-        display: grid;
-        gap: 22px;
-      }
-      .project {
-        border: 1px solid var(--line);
-        background: var(--paper);
-        border-radius: 20px;
-        display: grid;
-        grid-template-columns: 0.7fr 1.3fr;
-        overflow: hidden;
-        transition:
-          box-shadow 0.25s,
-          transform 0.25s;
-      }
-      .project:hover {
-        box-shadow: 0 20px 44px rgba(27, 23, 18, 0.09);
-        transform: translateY(-2px);
-      }
-      .project-aside {
-        padding: 34px 30px;
-        background: var(--paper-warm);
-        border-right: 1px solid var(--line);
-      }
-      .project-number {
-        font-family: var(--mono);
-        color: #fff;
-        background: var(--accent);
-        width: 34px;
-        height: 34px;
-        border-radius: 9px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.82rem;
-        margin-bottom: 2.2rem;
-      }
-      .project:nth-child(2) .project-number {
-        background: var(--gold);
-      }
-      .project-type {
-        color: var(--muted);
-        font-family: var(--mono);
-        text-transform: uppercase;
-        font-size: 0.68rem;
-        letter-spacing: 0.06em;
-        margin-bottom: 0.7rem;
-      }
-      .project h3 {
-        font-size: 1.5rem;
-        line-height: 1.15;
-        margin-bottom: 0.5rem;
-      }
-      .project-subtitle {
-        color: var(--muted);
-        font-size: 0.88rem;
-      }
-      .project-content {
-        padding: 34px 32px;
-      }
-      .project-block {
-        margin-bottom: 1.5rem;
-      }
-      .project-block:last-child {
-        margin-bottom: 0;
-      }
-      .project-block h4 {
-        font-family: var(--mono);
-        color: var(--accent-deep);
-        text-transform: uppercase;
-        font-size: 0.68rem;
-        letter-spacing: 0.06em;
-        margin-bottom: 0.5rem;
-      }
-      .project-block p {
-        color: var(--ink-soft);
-        font-size: 0.92rem;
-        max-width: 720px;
-      }
-      .project-tech {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 0.9rem;
-      }
-      .project-tech span {
-        color: var(--ink-soft);
-        font-family: var(--mono);
-        font-size: 0.71rem;
-        background: var(--paper-warm);
-        border: 1px solid var(--line);
-        padding: 4px 9px;
-        border-radius: 6px;
-      }
-      .project-actions {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-top: 1.5rem;
-      }
-      .project-link {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--ink);
-        text-decoration: none;
-        border: 1.5px solid var(--line-strong);
-        padding: 9px 15px;
-        border-radius: 8px;
-        transition: 0.2s;
-      }
-      .project-link:hover {
-        color: #fff;
-        background: var(--ink);
-        border-color: var(--ink);
-      }
-
-      /* ── EXPERIENCE ── */
-      .timeline {
-        border-left: 2px solid var(--line-strong);
-        margin-left: 10px;
-      }
-      .experience {
-        position: relative;
-        padding: 0 0 54px 42px;
-      }
-      .experience:last-child {
-        padding-bottom: 0;
-      }
-      .experience::before {
-        content: "";
-        position: absolute;
-        left: -8px;
-        top: 6px;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: var(--accent);
-        border: 3px solid var(--paper);
-        box-shadow: 0 0 0 2px var(--line-strong);
-      }
-      .experience-period {
-        color: var(--accent-deep);
-        font-family: var(--mono);
-        font-size: 0.74rem;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-      }
-      .experience h3 {
-        font-family: var(--sans);
-        font-size: 1.22rem;
-        font-weight: 700;
-        margin-bottom: 0.2rem;
-      }
-      .experience-company {
-        color: var(--muted);
-        font-size: 0.85rem;
-        margin-bottom: 1.1rem;
-      }
-      .experience-list {
-        list-style: none;
-        display: grid;
-        gap: 0.6rem;
-      }
-      .experience-list li {
-        position: relative;
-        padding-left: 19px;
-        color: var(--ink-soft);
-        font-size: 0.92rem;
-      }
-      .experience-list li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 9px;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--gold);
-      }
-
-      /* ── HOW I WORK ── */
-      .approach-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-      }
-      .approach {
-        padding: 32px 28px;
-        background: var(--paper);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        transition:
-          transform 0.22s,
-          box-shadow 0.22s;
-      }
-      .approach:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 16px 30px rgba(27, 23, 18, 0.08);
-      }
-      .approach-number {
-        font-family: var(--serif);
-        font-style: italic;
-        color: var(--accent);
-        font-size: 1.6rem;
-        margin-bottom: 1.3rem;
-      }
-      .approach h3 {
-        font-family: var(--sans);
-        font-size: 1.08rem;
-        font-weight: 700;
-        margin-bottom: 0.7rem;
-      }
-      .approach p {
-        color: var(--muted);
-        font-size: 0.9rem;
-        line-height: 1.75;
-      }
-
-      /* ── CONTACT ── */
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 0.8fr 1.2fr;
-        gap: 70px;
-      }
-      .contact-copy p {
-        color: var(--ink-soft);
-        max-width: 440px;
-        margin-bottom: 1.6rem;
-        font-size: 1rem;
-      }
-      .contact-list {
-        display: grid;
-        gap: 11px;
-      }
-      .contact-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 18px;
-        border: 1px solid var(--line);
-        background: var(--paper);
-        text-decoration: none;
-        border-radius: 12px;
-        transition: 0.2s;
-      }
-      .contact-item:hover {
-        border-color: var(--accent);
-        background: var(--accent-soft);
-        transform: translateX(3px);
-      }
-      .contact-label {
-        color: var(--muted);
-        font-family: var(--mono);
-        font-size: 0.68rem;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-      }
-      .contact-value {
-        color: var(--ink);
-        font-size: 0.93rem;
-        font-weight: 600;
-      }
-
-      .contact-form {
-        display: grid;
-        gap: 18px;
-        background: var(--paper-warm);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 32px;
-      }
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-      .form-group {
-        display: grid;
-        gap: 8px;
-      }
-      .form-group label {
-        color: var(--ink-soft);
-        font-family: var(--mono);
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-      }
-      .form-group input,
-      .form-group textarea {
-        width: 100%;
-        background: var(--paper);
-        color: var(--ink);
-        border: 1.5px solid var(--line-strong);
-        border-radius: 9px;
-        padding: 13px 14px;
-        outline: none;
-        transition: border-color 0.2s;
-        font-size: 0.94rem;
-      }
-      .form-group input:focus,
-      .form-group textarea:focus {
-        border-color: var(--accent);
-      }
-      .form-group textarea {
-        min-height: 140px;
-        resize: vertical;
-      }
-      .form-note {
-        color: var(--muted);
-        font-size: 0.78rem;
-      }
-
-      /* ── FOOTER ── */
-      footer {
-        padding: 34px 0;
-        border-top: 1px solid var(--line);
-      }
-      .footer-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        color: var(--muted);
-        font-size: 0.85rem;
-        flex-wrap: wrap;
-      }
-      .footer-links {
-        display: flex;
-        gap: 20px;
-      }
-      .footer-links a {
-        color: var(--ink-soft);
-        text-decoration: none;
-        font-weight: 500;
-      }
-      .footer-links a:hover {
-        color: var(--accent);
-      }
-
-      /* ── MOBILE ── */
-      @media (max-width: 980px) {
-        .about-grid,
-        .contact-grid {
-          grid-template-columns: 1fr;
-          gap: 44px;
-        }
-        .skills-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .project {
-          grid-template-columns: 1fr;
-        }
-        .project-aside {
-          border-right: 0;
-          border-bottom: 1px solid var(--line);
-        }
-        .approach-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .container {
-          width: min(var(--max), calc(100% - 36px));
-        }
-        nav {
-          height: 66px;
-        }
-        #home {
-          padding-top: 88px;
-          padding-bottom: 32px;
-        }
-        .nav-links {
-          display: none;
-          position: absolute;
-          top: 66px;
-          left: 0;
-          right: 0;
-          padding: 14px 18px 22px;
-          background: var(--paper);
-          border-bottom: 1px solid var(--line);
-          flex-direction: column;
-          align-items: stretch;
-          gap: 0;
-        }
-        .nav-links.open {
-          display: flex;
-        }
-        .nav-links li {
-          border-bottom: 1px solid var(--line);
-        }
-        .nav-links li:last-child {
-          border-bottom: 0;
-        }
-        .nav-links a {
-          display: block;
-          padding: 14px 0;
-        }
-        .hamburger {
-          display: flex;
-        }
-        .hero h1 {
-          font-size: clamp(2.6rem, 14vw, 4rem);
-        }
-        section {
-          padding: 36px 0;
-        }
-        .section-head {
-          margin-bottom: 40px;
-        }
-        .skills-grid {
-          grid-template-columns: 1fr;
-        }
-        .form-row {
-          grid-template-columns: 1fr;
-        }
-        .footer-inner {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-        *,
-        *::before,
-        *::after {
-          transition: none !important;
-          animation: none !important;
-        }
-        .reveal {
-          opacity: 1;
-          transform: none;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css" />
   </head>
+
   <body>
     <header>
       <nav aria-label="Primary navigation">
         <div class="container nav-inner">
-          <a class="nav-logo" href="#home"
-            >Brendah Stella <span class="dot"></span
-          ></a>
+          <a class="nav-logo" href="#home">
+            Brendah Stella <span class="dot"></span>
+          </a>
 
           <ul class="nav-links" id="navLinks">
             <li><a href="#about">About</a></li>
@@ -963,7 +64,6 @@
             aria-label="Open navigation"
             aria-controls="navLinks"
             aria-expanded="false"
-            onclick="toggleNav()"
           >
             ☰
           </button>
@@ -977,10 +77,13 @@
         <div class="container hero">
           <div>
             <p class="eyebrow">SOFTWARE DEVELOPER | MOMBASA, KENYA</p>
+
             <h1>Brendah <em>Stella</em></h1>
+
             <p class="hero-role">
               I build software and troubleshoot the systems it runs on.
             </p>
+
             <p class="hero-copy">
               My work sits between application development and IT systems
               support. I've built websites, a tenant management platform and a
@@ -989,6 +92,7 @@
               institute. I like problems that need both code and
               troubleshooting.
             </p>
+
             <div class="hero-actions">
               <a href="#work" class="btn btn-primary">View my work</a>
               <a href="#contact" class="btn btn-secondary">Get in touch</a>
@@ -1013,6 +117,7 @@
                 in 2026 and I build with Python, Flask, JavaScript, Java and
                 MySQL.
               </p>
+
               <p>
                 My projects focus on real problems.
                 <strong>SmartTenant</strong> brings tenant records, rent
@@ -1021,6 +126,7 @@
                 <strong>TUM Room Locator</strong> helps students and staff
                 navigate a large campus with live GPS guidance.
               </p>
+
               <p>
                 Alongside development, I spent three months as an ICT attachee
                 at KMFRI supporting staff across departments, administering
@@ -1035,68 +141,80 @@
                   href="https://github.com/Breestellar"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >GitHub ↗</a
                 >
+                  GitHub ↗
+                </a>
+
                 <a
                   class="pill-link"
                   href="https://linkedin.com/in/brendah-stella"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >LinkedIn ↗</a
                 >
+                  LinkedIn ↗
+                </a>
+
                 <a
                   class="pill-link"
                   href="https://wa.me/254706333151"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >WhatsApp ↗</a
                 >
+                  WhatsApp ↗
+                </a>
               </div>
             </div>
 
             <div class="facts reveal" aria-label="Profile details">
               <div class="fact">
-                <span class="fact-key">Location</span
-                ><span class="fact-value">Mombasa, Kenya</span>
+                <span class="fact-key">Location</span>
+                <span class="fact-value">Mombasa, Kenya</span>
               </div>
+
               <div class="fact">
-                <span class="fact-key">Education</span
-                ><span class="fact-value">BSc Information Technology</span>
+                <span class="fact-key">Education</span>
+                <span class="fact-value">BSc Information Technology</span>
               </div>
+
               <div class="fact">
-                <span class="fact-key">Focus</span
-                ><span class="fact-value"
-                  >Software Development &amp; ICT Support</span
-                >
+                <span class="fact-key">Focus</span>
+                <span class="fact-value">
+                  Software Development &amp; ICT Support
+                </span>
               </div>
+
               <div class="fact">
-                <span class="fact-key">Experience</span
-                ><span class="fact-value"
-                  >KMFRI attachment & independent projects</span
-                >
+                <span class="fact-key">Experience</span>
+                <span class="fact-value">
+                  KMFRI attachment &amp; independent projects
+                </span>
               </div>
+
               <div class="fact">
-                <span class="fact-key">Languages</span
-                ><span class="fact-value">English and Kiswahili</span>
+                <span class="fact-key">Languages</span>
+                <span class="fact-value">English and Kiswahili</span>
               </div>
+
               <div class="fact">
-                <span class="fact-key">Credentials</span
-                ><span class="fact-value"
-                  >Cisco Cybersecurity Essentials, Google technical support
-                  &amp; networking</span
-                >
+                <span class="fact-key">Credentials</span>
+                <span class="fact-value">
+                  Cisco Cybersecurity Essentials, Google technical support &amp;
+                  networking
+                </span>
               </div>
+
               <div class="fact">
-                <span class="fact-key">Training</span
-                ><span class="fact-value"
-                  >Cloud infrastructure &amp; emerging technology</span
-                >
+                <span class="fact-key">Training</span>
+                <span class="fact-value">
+                  Cloud infrastructure &amp; emerging technology
+                </span>
               </div>
+
               <div class="fact">
-                <span class="fact-key">Availability</span
-                ><span class="fact-value"
-                  >Full-time, junior &amp; contract roles</span
-                >
+                <span class="fact-key">Availability</span>
+                <span class="fact-value">
+                  Full-time, junior &amp; contract roles
+                </span>
               </div>
             </div>
           </div>
@@ -1108,6 +226,7 @@
         <div class="container">
           <div class="section-head reveal">
             <p class="eyebrow">SKILLS</p>
+
             <p class="section-intro">
               These are the tools and systems I've actually used in projects,
               coursework and hands-on ICT work.
@@ -1130,8 +249,11 @@
                   <polyline points="8 6 2 12 8 18" />
                 </svg>
               </div>
+
               <h3>Development</h3>
+
               <p>Building application logic and interfaces.</p>
+
               <ul class="skill-list">
                 <li>Python</li>
                 <li>Flask</li>
@@ -1160,8 +282,11 @@
                   <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
                 </svg>
               </div>
+
               <h3>Backend &amp; Data</h3>
+
               <p>Working with application logic, databases and integrations.</p>
+
               <ul class="skill-list">
                 <li>MySQL</li>
                 <li>SQL Server fundamentals</li>
@@ -1188,10 +313,13 @@
                   <line x1="12" y1="17" x2="12" y2="21" />
                 </svg>
               </div>
+
               <h3>ICT &amp; Systems</h3>
+
               <p>
                 Hands-on support across users, devices and everyday systems.
               </p>
+
               <ul class="skill-list">
                 <li>Active Directory</li>
                 <li>Microsoft 365</li>
@@ -1219,11 +347,14 @@
                   />
                 </svg>
               </div>
+
               <h3>Networks &amp; Practice</h3>
+
               <p>
                 Diagnosing infrastructure issues and keeping technical work
                 documented.
               </p>
+
               <ul class="skill-list">
                 <li>IP / DHCP / DNS</li>
                 <li>VPN fundamentals</li>
@@ -1242,6 +373,7 @@
         <div class="container">
           <div class="section-head reveal">
             <p class="eyebrow">SERVICES</p>
+
             <p class="section-intro">
               I'm comfortable taking on builds, technical fixes and the
               day-to-day work that keeps systems usable.
@@ -1251,7 +383,9 @@
           <div class="approach-grid capabilities-grid">
             <article class="approach reveal">
               <p class="approach-number">01</p>
+
               <h3>Web &amp; software</h3>
+
               <p>
                 Build or improve web applications, internal tools and websites
                 using Python, Flask, JavaScript, MySQL, APIs and responsive
@@ -1261,7 +395,9 @@
 
             <article class="approach reveal">
               <p class="approach-number">02</p>
+
               <h3>ICT support</h3>
+
               <p>
                 Troubleshoot hardware, software, user accounts and Microsoft 365
                 issues, including routine system setup and first-line support.
@@ -1270,7 +406,9 @@
 
             <article class="approach reveal">
               <p class="approach-number">03</p>
+
               <h3>Networks &amp; systems</h3>
+
               <p>
                 Help diagnose LAN and Wi-Fi problems and work through IP, DHCP,
                 DNS and VPN or network-device configuration issues.
@@ -1279,7 +417,9 @@
 
             <article class="approach reveal">
               <p class="approach-number">04</p>
+
               <h3>Technical documentation</h3>
+
               <p>
                 Document recurring faults, setup steps and fixes so the next
                 person does not have to start troubleshooting from scratch.
@@ -1294,6 +434,7 @@
         <div class="container">
           <div class="section-head reveal">
             <p class="eyebrow">PROJECTS</p>
+
             <p class="section-intro">
               Each project is presented around the problem it addresses, the
               approach I took, and what I actually built.
@@ -1304,15 +445,20 @@
             <article class="project reveal">
               <div class="project-aside">
                 <span class="project-number">01</span>
+
                 <p class="project-type">Web application</p>
+
                 <h3>SmartTenant</h3>
+
                 <p class="project-subtitle">
                   Multi-user property &amp; tenant management system
                 </p>
               </div>
+
               <div class="project-content">
                 <div class="project-block">
                   <h4>The problem</h4>
+
                   <p>
                     Landlords and tenants often manage rent records, lease
                     terms, complaints and communication through disconnected
@@ -1320,16 +466,20 @@
                     lost.
                   </p>
                 </div>
+
                 <div class="project-block">
                   <h4>The approach</h4>
+
                   <p>
                     I built a role-based web application that gives landlords
                     and tenants separate, permissioned views of the same data so
                     each side only sees and edits what applies to them.
                   </p>
                 </div>
+
                 <div class="project-block">
                   <h4>What I worked on</h4>
+
                   <p>
                     Role-based access control, automated PDF lease generation,
                     an AJAX-driven messaging system between landlords and
@@ -1337,22 +487,28 @@
                     management module, all with a consistent interface across
                     every page.
                   </p>
+
                   <div
                     class="project-tech"
                     aria-label="SmartTenant technologies"
                   >
-                    <span>Flask</span><span>MySQL</span><span>Tailwind CSS</span
-                    ><span>AJAX</span><span>xhtml2pdf</span>
+                    <span>Flask</span>
+                    <span>MySQL</span>
+                    <span>Tailwind CSS</span>
+                    <span>AJAX</span>
+                    <span>xhtml2pdf</span>
                   </div>
                 </div>
+
                 <div class="project-actions">
                   <a
                     class="project-link"
                     href="https://github.com/Breestellar/Smarttenant"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >View source ↗</a
                   >
+                    View source ↗
+                  </a>
                 </div>
               </div>
             </article>
@@ -1360,23 +516,30 @@
             <article class="project reveal">
               <div class="project-aside">
                 <span class="project-number">02</span>
+
                 <p class="project-type">Navigation tool</p>
+
                 <h3>TUM Room Locator</h3>
+
                 <p class="project-subtitle">
                   Campus navigation with live GPS guidance
                 </p>
               </div>
+
               <div class="project-content">
                 <div class="project-block">
                   <h4>The problem</h4>
+
                   <p>
                     Finding a specific room on a large unfamiliar campus wastes
                     time for students and staff, especially during the first
                     weeks of a semester.
                   </p>
                 </div>
+
                 <div class="project-block">
                   <h4>The approach</h4>
+
                   <p>
                     I built a focused navigation tool for the Technical
                     University of Mombasa that turns a room name into a walkable
@@ -1384,30 +547,38 @@
                     map.
                   </p>
                 </div>
+
                 <div class="project-block">
                   <h4>What I worked on</h4>
+
                   <p>
                     Route calculation and rerouting with OSRM, GPS signal
                     smoothing to keep the map stable, voice-guided directions
                     and the interactive Leaflet.js map interface.
                   </p>
+
                   <div
                     class="project-tech"
                     aria-label="TUM Room Locator technologies"
                   >
-                    <span>Flask</span><span>MySQL</span><span>Leaflet.js</span
-                    ><span>OSRM</span><span>Geolocation API</span
-                    ><span>Web Speech API</span>
+                    <span>Flask</span>
+                    <span>MySQL</span>
+                    <span>Leaflet.js</span>
+                    <span>OSRM</span>
+                    <span>Geolocation API</span>
+                    <span>Web Speech API</span>
                   </div>
                 </div>
+
                 <div class="project-actions">
                   <a
                     class="project-link"
                     href="https://github.com/Breestellar/Tum-Room-Locator"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >View source ↗</a
                   >
+                    View source ↗
+                  </a>
                 </div>
               </div>
             </article>
@@ -1420,6 +591,7 @@
         <div class="container">
           <div class="section-head reveal">
             <p class="eyebrow">EXPERIENCE</p>
+
             <p class="section-intro">
               A combination of workplace ICT experience and independent software
               development.
@@ -1429,40 +601,50 @@
           <div class="timeline">
             <article class="experience reveal">
               <p class="experience-period">May 2025 — August 2025</p>
+
               <h3>IT Attachment</h3>
+
               <p class="experience-company">
                 Kenya Marine and Fisheries Research Institute (KMFRI) · Mombasa,
                 Kenya
               </p>
+
               <ul class="experience-list">
                 <li>
                   Provided first-line technical support to staff across
                   departments, resolving hardware and software issues.
                 </li>
+
                 <li>
                   Administered user accounts and permissions in Active Directory
                   and supported Microsoft 365 environments.
                 </li>
+
                 <li>
                   Diagnosed and resolved LAN and Wi-Fi connectivity issues
                   across the institute's network.
                 </li>
+
                 <li>
                   Documented recurring incidents to help the ICT team track and
                   resolve issues faster.
                 </li>
+
                 <li>
                   Assisted with software installation, operating-system
                   configuration and routine system maintenance and updates.
                 </li>
+
                 <li>
                   Assisted with data backup and recovery procedures, monitored
                   system performance and reported issues to senior ICT staff.
                 </li>
+
                 <li>
                   Supported enterprise users and gained exposure to CRM and ERP
                   environments through ICT workshops.
                 </li>
+
                 <li>
                   Received an official recommendation letter for reliability and
                   support performance.
@@ -1472,19 +654,24 @@
 
             <article class="experience reveal">
               <p class="experience-period">2023 — Present</p>
+
               <h3>Independent Developer</h3>
+
               <p class="experience-company">
                 Self-directed development · Mombasa, Kenya
               </p>
+
               <ul class="experience-list">
                 <li>
                   Designed and built SmartTenant and TUM Room Locator from the
                   ground up, end to end.
                 </li>
+
                 <li>
                   Worked across frontend interfaces, backend logic, databases
                   and third-party APIs.
                 </li>
+
                 <li>
                   Used personal projects to work through practical problems, not
                   just to learn a technology.
@@ -1500,6 +687,7 @@
         <div class="container">
           <div class="section-head reveal">
             <p class="eyebrow">CONTACT</p>
+
             <p class="section-intro">
               I'm open to junior software development roles, ICT positions and
               relevant freelance or contract work. I'm happy to discuss your
@@ -1511,35 +699,38 @@
             <div class="contact-copy reveal">
               <div class="contact-list">
                 <a class="contact-item" href="tel:+254706333151">
-                  <span class="contact-label">Phone</span
-                  ><span class="contact-value">+254 706 333 151</span>
+                  <span class="contact-label">Phone</span>
+                  <span class="contact-value">+254 706 333 151</span>
                 </a>
+
                 <a
                   class="contact-item"
                   href="https://wa.me/254706333151"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span class="contact-label">WhatsApp</span
-                  ><span class="contact-value">Start a conversation ↗</span>
+                  <span class="contact-label">WhatsApp</span>
+                  <span class="contact-value">Start a conversation ↗</span>
                 </a>
+
                 <a
                   class="contact-item"
                   href="https://github.com/Breestellar"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span class="contact-label">GitHub</span
-                  ><span class="contact-value">github.com/Breestellar ↗</span>
+                  <span class="contact-label">GitHub</span>
+                  <span class="contact-value">github.com/Breestellar ↗</span>
                 </a>
+
                 <a
                   class="contact-item"
                   href="https://linkedin.com/in/brendah-stella"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span class="contact-label">LinkedIn</span
-                  ><span class="contact-value">Brendah Stella ↗</span>
+                  <span class="contact-label">LinkedIn</span>
+                  <span class="contact-value">Brendah Stella ↗</span>
                 </a>
               </div>
             </div>
@@ -1556,16 +747,19 @@
                   name="access_key"
                   value="798fbf9f-aac8-4749-8704-85d0359623bb"
                 />
+
                 <input
                   type="hidden"
                   name="subject"
                   value="Portfolio Contact — Brendah Stella"
                 />
+
                 <input
                   type="hidden"
                   name="from_name"
                   value="Brendah Stella Portfolio"
                 />
+
                 <input
                   type="hidden"
                   name="redirect"
@@ -1576,7 +770,7 @@
                 <input
                   type="checkbox"
                   name="botcheck"
-                  style="display: none"
+                  class="honeypot"
                   tabindex="-1"
                   autocomplete="off"
                 />
@@ -1584,6 +778,7 @@
                 <div class="form-row">
                   <div class="form-group">
                     <label for="name">Name</label>
+
                     <input
                       id="name"
                       type="text"
@@ -1593,8 +788,10 @@
                       required
                     />
                   </div>
+
                   <div class="form-group">
                     <label for="email">Email</label>
+
                     <input
                       id="email"
                       type="email"
@@ -1608,29 +805,27 @@
 
                 <div class="form-group">
                   <label for="message">Message</label>
+
                   <textarea
                     id="message"
                     name="message"
                     placeholder="Tell me what you'd like to discuss..."
+                    maxlength="5000"
                     required
                   ></textarea>
                 </div>
 
                 <div class="h-captcha" data-captcha="true"></div>
 
-                <button type="s-ubmit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary">
                   Send message
                 </button>
+
                 <p class="form-note">
                   Please include enough detail for me to understand what you're
                   reaching out about.
                 </p>
               </form>
-              <script
-                src="https://web3forms.com/client/script.js"
-                async
-                defer
-              ></script>
             </div>
           </div>
         </div>
@@ -1640,77 +835,30 @@
     <footer>
       <div class="container footer-inner">
         <span>© 2026 Brendah Stella</span>
+
         <div class="footer-links">
           <a href="#home">Top</a>
+
           <a
             href="https://github.com/Breestellar"
             target="_blank"
             rel="noopener noreferrer"
-            >GitHub</a
           >
+            GitHub
+          </a>
+
           <a
             href="https://linkedin.com/in/brendah-stella"
             target="_blank"
             rel="noopener noreferrer"
-            >LinkedIn</a
           >
+            LinkedIn
+          </a>
         </div>
       </div>
     </footer>
 
-    <script>
-      function toggleNav() {
-        const navLinks = document.getElementById("navLinks");
-        const button = document.querySelector(".hamburger");
-        const isOpen = navLinks.classList.toggle("open");
-        button.setAttribute("aria-expanded", String(isOpen));
-        button.setAttribute(
-          "aria-label",
-          isOpen ? "Close navigation" : "Open navigation",
-        );
-      }
-
-      document.querySelectorAll("#navLinks a").forEach((link) => {
-        link.addEventListener("click", () => {
-          document.getElementById("navLinks").classList.remove("open");
-          const button = document.querySelector(".hamburger");
-          button.setAttribute("aria-expanded", "false");
-          button.setAttribute("aria-label", "Open navigation");
-        });
-      });
-
-      const contactForm = document.getElementById("contact-form");
-
-      contactForm.addEventListener("submit", (event) => {
-        const hCaptchaResponse = contactForm.querySelector(
-          'textarea[name="h-captcha-response"]',
-        );
-
-        if (!hCaptchaResponse || !hCaptchaResponse.value) {
-          event.preventDefault();
-          alert(
-            "Please complete the security check before sending your message.",
-          );
-        }
-      });
-
-      const revealObs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("in");
-              revealObs.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.12 },
-      );
-      document
-        .querySelectorAll(".reveal")
-        .forEach((el) => revealObs.observe(el));
-    </script>
-
-    <!-- Web3Forms loads and renders the hCaptcha widget from the form markup. -->
+    <script src="./index.js" defer></script>
     <script src="https://web3forms.com/client/script.js" async defer></script>
   </body>
 </html>
